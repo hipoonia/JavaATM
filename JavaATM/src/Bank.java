@@ -132,6 +132,10 @@ public class Bank {
 		
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	
 
 }
 
