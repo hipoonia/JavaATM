@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 import java.security.MessageDigest;
 import java.security.*;
 
@@ -18,7 +19,9 @@ public class User {
 	private byte pinHash[];
 	
 	//the list of accounts for this user
-	private ArrayList<Account> accounts;
+	private List<Account> accounts;
+	
+	private static final String PIN_HASH_ALGO = "MD5";
 
 	/** Create a new user	
 	*	@param firstName the user's first name
@@ -34,7 +37,7 @@ public class User {
 		
 		// store the pin's MD5 hash, rather than the original value, for security reasons.
 		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
+			MessageDigest md = MessageDigest.getInstance(PIN_HASH_ALGO);
 			this.pinHash = md.digest(pin.getBytes());
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("error, caught NoSuchAlgorithmException");
@@ -66,7 +69,7 @@ public class User {
 	public boolean validatePin(String aPin) {
 		
 		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
+			MessageDigest md = MessageDigest.getInstance(PIN_HASH_ALGO);
 			return MessageDigest.isEqual(md.digest(aPin.getBytes()), this.pinHash);
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("error, caught NoSuchAlgorithmException");

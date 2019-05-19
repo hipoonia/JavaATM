@@ -272,7 +272,7 @@ public class ATM {
 		// get the amount  to transfer
 		
 		do {
-			System.out.printf("Enter the amount to transfer (max $%.02f): $",acctBal);
+			System.out.printf("Enter the amount to deposit :");
 			
 			amount = sc.nextDouble();
 			if (amount<0) {

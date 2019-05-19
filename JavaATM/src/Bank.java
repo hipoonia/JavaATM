@@ -1,13 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Bank {
 	
 	private String name;
 	
-	private ArrayList<User> users;
+	private List<User> users;
 	
-	private ArrayList<Account> accounts;
+	private List<Account> accounts;
 	
 	/*
 	 * Create a new Bank object with empty lists of users and accounts 

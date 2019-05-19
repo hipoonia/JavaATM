@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
 	
@@ -13,7 +14,7 @@ public class Account {
 	private User holder;
 	
 	//the list of transactions for this account
-	private ArrayList<Transaction> transactions;
+	private List<Transaction> transactions;
 	
 	/*
 	 * Create a new Account
@@ -81,7 +82,7 @@ public class Account {
 	
 	public void addTransaction(double amount, String memo)  {
 		
-		//creating new transction object and adding it to our list
+		//creating new transaction object and adding it to our list
 		Transaction newTrans = new Transaction(amount, memo, this);
 		this.transactions.add(newTrans);
 	}
