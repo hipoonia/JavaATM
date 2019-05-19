@@ -1,5 +1,6 @@
 // source youtube link : https://www.youtube.com/watch?v=k0BofouWX-o
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class ATM {
@@ -13,10 +14,28 @@ public class ATM {
 		Bank theBank = new Bank("Bank of Haryana");
 		
 		// add a user, which also creates a savings accounts
-		User aUser = theBank.addUser("Pradeep", "Poonia", "1234");
+		User aUser = null;
+		
+		try {
+			aUser = theBank.addUser("Pradeep", "Poonia", "1234");
+		} catch (UserCreationException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Service unavailable. CALL CUSTOMER CARE");
+//			System.out.println(e.getMessage());
+//			
+//			System.out.println("_______");
+//			
+//		//	System.out.println(e.getStackTrace());
+//			
+//			System.out.println("_______");
+//			
+			e.printStackTrace();
+			System.exit(1);
+		}
 		
 		// add a checking account for our user
 		Account newAccount = new Account("Checking", aUser, theBank);
+		
 		aUser.addAccount(newAccount);
 		theBank.addAccount(newAccount);
 		

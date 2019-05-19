@@ -1,3 +1,4 @@
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -96,10 +97,26 @@ public class Bank {
 	}
 	
 	
-	public User addUser(String firstName, String lastName, String pin) {
+	public User addUser(String firstName, String lastName, String pin)  {
 		
 		// create a new User object and add it to our list
-		User newUser = new User(firstName, lastName, pin, this);
+		User newUser= null;
+		try {
+			newUser = new User(firstName, lastName, pin, this);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR: Unable to create user : " + e.getMessage());
+//			
+//			System.out.println("--------");
+//			
+//			//System.out.println(e.getStackTrace());
+//			
+//			System.out.println("------.----");
+//			
+//			e.printStackTrace();
+//			
+			throw new UserCreationException ("Unable to create user");
+		}
 		this.users.add(newUser);
 		
 		//create a savings account for the user and add to User and Bank accounts lists

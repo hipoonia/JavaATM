@@ -4,7 +4,7 @@ import java.util.List;
 import java.security.MessageDigest;
 import java.security.*;
 
-public class User {
+public class User  {
 
 	//First name of the user
 	private String firstName;
@@ -29,22 +29,23 @@ public class User {
 	*	@param pin the user's account pin number
 	*	@param theBank the bank object that the user is a customer of
 	*/
-	public User(String firstName, String lastName, String pin, Bank theBank) {
+	public User(String firstName, String lastName, String pin, Bank theBank) throws NoSuchAlgorithmException {
 		
 		//set user's name
 		this.firstName = firstName;
 		this.lastName = lastName;
 		
 		// store the pin's MD5 hash, rather than the original value, for security reasons.
-		try {
-			MessageDigest md = MessageDigest.getInstance(PIN_HASH_ALGO);
-			this.pinHash = md.digest(pin.getBytes());
-		} catch (NoSuchAlgorithmException e) {
-			System.out.println("error, caught NoSuchAlgorithmException");
-			e.printStackTrace();
-			System.exit(1);
-		}
-		
+//		try {
+//			MessageDigest md = MessageDigest.getInstance(PIN_HASH_ALGO);
+//			this.pinHash = md.digest(pin.getBytes());
+//		} catch (NoSuchAlgorithmException e) {
+//			System.out.println("error, caught NoSuchAlgorithmException");
+//			e.printStackTrace();
+//			System.exit(1);
+//		}
+		MessageDigest md = MessageDigest.getInstance(PIN_HASH_ALGO);
+		this.pinHash = md.digest(pin.getBytes());
 		// get a new, unique universal ID for the user
 		this.uuid = theBank.getNewUserUUID();
 		
