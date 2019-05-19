@@ -1,3 +1,4 @@
+package com.javaatm;
 import java.util.Date;
 
 public class Transaction {

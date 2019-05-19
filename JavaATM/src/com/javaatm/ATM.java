@@ -1,7 +1,9 @@
 // source youtube link : https://www.youtube.com/watch?v=k0BofouWX-o
-
+package com.javaatm;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+
+import com.javaatm.exception.UserCreationException;
 
 public class ATM {
 

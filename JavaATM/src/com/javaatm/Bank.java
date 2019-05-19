@@ -1,7 +1,10 @@
+package com.javaatm;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.javaatm.exception.UserCreationException;
 
 public class Bank {
 	

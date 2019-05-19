@@ -1,3 +1,4 @@
+package com.javaatm.exception;
 import java.security.NoSuchAlgorithmException;
 
 public class UserCreationException extends RuntimeException {
