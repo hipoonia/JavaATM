@@ -74,11 +74,11 @@ public class ATM {
 		do {
 			System.out.printf("Welcome %s, what would you like to do?\n", theUser.getFirstName());
 			
-			System.out.println(" 1)Show account transaction history");
-			System.out.println(" 2)Withdrawl");
-			System.out.println(" 3)Deposit");
-			System.out.println(" 4)Transfer"); // withdrawl and deposit bundled together
-			System.out.println(" 5)Quit");
+			System.out.println("  1)Show account transaction history");
+			System.out.println("  2)Withdrawl");
+			System.out.println("  3)Deposit");
+			System.out.println("  4)Transfer"); // withdraw and deposit bundled together
+			System.out.println("  5)Quit");
 			System.out.println();
 			
 			System.out.println("Enter choice:");
@@ -104,6 +104,10 @@ public class ATM {
 		case 4:
 			ATM.transferFunds(theUser, sc);
 			break;	
+		case 5:
+			// gobble up rest of previous input
+			sc.nextLine();
+			break;
 		}
 		
 		// redisplay this menu unless the user wants to quit
@@ -149,7 +153,7 @@ public class ATM {
 		//get the account to transfer from
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-								"to transger from: ");
+								"to transger from: ",theUser.numAccounts());
 			fromAcct = sc.nextInt()-1;
 			
 			if (fromAcct<0 || fromAcct>=theUser.numAccounts()) {
@@ -159,10 +163,10 @@ public class ATM {
 		
 		acctBal = theUser.getAcctBalance(fromAcct);
 		
-		//get the account to tranfer to
+		//get the account to transfer to
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-								"to transger from: ");
+								"to transger in: ", theUser.numAccounts());
 			toAcct = sc.nextInt()-1;
 			
 			if (toAcct<0 || toAcct>=theUser.numAccounts()) {
@@ -189,7 +193,7 @@ public class ATM {
 		
 		theUser.addAcctTransaction(fromAcct, -1*amount, String.format("Transfer to account %s", theUser.getAcctUUID(toAcct)));
 		
-		theUser.addAcctTransaction(toAcct, -amount, String.format("Transfer to account %s", theUser.getAcctUUID(fromAcct)));
+		theUser.addAcctTransaction(toAcct, amount, String.format("Transfer to account %s", theUser.getAcctUUID(fromAcct)));
 
 	}
 	
@@ -205,7 +209,7 @@ public class ATM {
 			//get the account to transfer from
 			do {
 				System.out.printf("Enter the number (1-%d) of the account\n"+
-									"to transger from: ");
+									"to withdraw from: ",theUser.numAccounts());
 				fromAcct = sc.nextInt()-1;
 				
 				if (fromAcct<0 || fromAcct>=theUser.numAccounts()) {
@@ -255,7 +259,7 @@ public class ATM {
 		//get the account to deposit to
 		do {
 			System.out.printf("Enter the number (1-%d) of the account\n"+
-								"to transger from: ");
+								"to deposit in: ", theUser.numAccounts());
 			toAcct = sc.nextInt()-1;
 			
 			if (toAcct<0 || toAcct>=theUser.numAccounts()) {
@@ -274,11 +278,11 @@ public class ATM {
 			if (amount<0) {
 				System.out.println("Amount must be greater than zero.");
 			}
-			else if (amount > acctBal) {
-				System.out.printf("amount must not be greater \n"+
-							"than balance of $%.02f.\n",acctBal);
-			}
-		} while (amount<0 || amount>acctBal);
+//			else if (amount > acctBal) {
+//				System.out.printf("amount must not be greater \n"+
+//							"than balance of $%.02f.\n",acctBal);
+//			}
+		} while (amount<0 );
 		
 		// gobble up rest of previous input
 		
